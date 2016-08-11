@@ -338,10 +338,9 @@ $(function(){
 	ahk.init();
 
 	if(sys.isWeixinBrowser()){
-		$.getJSON('http://weixin.ibyerzs.com/jssdk/getJsSdk.php?callback=?',
+		$.getJSON('http://weixin.ibyersh.com/jssdk/getJsSdk.php?callback=?',
 			{purl:location.href},
 			function (data) {
-			  $.hideLoading();
 			  wx.config({
 				debug: false,
 				appId: data.appId,
@@ -352,10 +351,10 @@ $(function(){
 			  });
 			  wx.ready(function () {
 				wx.onMenuShareAppMessage({//发送给好友
-					title: '饭卡', // 分享标题
-					desc: 'When? Where? And Your Photo :)', // 分享描述
-					link: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx459908e9c6033569&redirect_uri=http%3A%2F%2Fm.ibyersh.com%2Fzt%2F2016%2Fnico%2Fmap.php&response_type=code&scope=snsapi_base&state=ohmygo#wechat_redirect', // 分享链接
-					imgUrl: 'http://m.ibyersh.com/zt/2016/nico/static/images/love2_03.png', // 分享图标
+					title: '沈刚都来啦，你还等什么？', // 分享标题
+					desc: '拜博口腔招聘啦！与专业通行，用关注共赢。拜博口腔，有你更完美！', // 分享描述
+					link: 'http://m.ibyersh.com/zt/2016/zhaop/', // 分享链接
+					imgUrl: 'http://m.ibyersh.com/zt/2016/zhaop/static/images/face.jpg', // 分享图标
 					type: 'link', // 分享类型,music、video或link，不填默认为link
 					dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
 					success: function () { 
@@ -367,9 +366,9 @@ $(function(){
 				});
 				
 				wx.onMenuShareTimeline({//分享到朋友圈
-					title: '饭卡', // 分享标题
-					link: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx459908e9c6033569&redirect_uri=http%3A%2F%2Fm.ibyersh.com%2Fzt%2F2016%2Fnico%2Fmap.php&response_type=code&scope=snsapi_base&state=ohmygo#wechat_redirect', // 分享链接
-					imgUrl: 'http://m.ibyersh.com/zt/2016/nico/static/images/love2_03.png', // 分享图标
+					title: '沈刚都来啦，你还等什么？', // 分享标题
+					link: 'http://m.ibyersh.com/zt/2016/zhaop/', // 分享链接
+					imgUrl: 'http://m.ibyersh.com/zt/2016/zhaop/static/images/face.jpg', // 分享图标
 					success: function () { 
 						
 					},
