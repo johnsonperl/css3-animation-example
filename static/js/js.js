@@ -109,7 +109,7 @@
 
 //下面两行根据浏览器设定字体大小，站内使用rem控制字体大小
 var html = document.documentElement;
-html.style.cssText = "font-size:"+html.clientWidth+"px !important";
+html.style.fontSize = html.clientWidth+"px";
 
 var sys = {};
 //绑定touch事件
@@ -135,7 +135,6 @@ sys.ts = function(e) {
 	sys.startY = e.touches[0].pageY;
 	sys.startX = e.touches[0].pageX;
 	sys.yInit = ahk.step * ahk.h;
-	$(".section").removeTransition();
 }
 //touch move
 sys.tm = function(e) {
@@ -253,48 +252,12 @@ ahk.scene = function(){
 	switch(ahk.step){
 		case 0:
 			//$("#anm1_1").j_animation({name:"fadeIn",duration:"2s",timingFunc:"linear",delay:"0.2s"});
-			$("#anm1_3").j_animation({name:"fadeInDown",timingFunc:"cubic-bezier(0.17, 0.5, 0.25, 1)",delay:".5s"});
-			$("#anm1_2").j_animation({name:"fadeInUp",timingFunc:"cubic-bezier(0.17, 0.5, 0.25, 1)",delay:".5s"});
+			$("#anm1_1").j_animation({name:"fadeInDown",timingFunc:"cubic-bezier(0.17, 0.5, 0.25, 1)",delay:".2s"});
+			$("#anm1_2").j_animation({name:"fadeInLeft",timingFunc:"cubic-bezier(0.17, 0.5, 0.25, 1)",delay:".5s"});
+			$("#anm1_3").j_animation({name:"fadeInRight",timingFunc:"cubic-bezier(0.04, 1.32, 0.82, 1.17)",delay:".8s"});
 			sys.tips();
 			break;
-		case 1:
-			
-			$("#anm2_1").j_animation({name:"fadeInDown",duration:"1s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"0.2s"});
-			$("#anm2_4").j_animation({name:"fadeInUp",duration:"1s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"0.2s"});
-			$("#anm2_2").j_animation({name:"bounceIn",timingFunc:"cubic-bezier(0.17, 0.5, 0.25, 1)",delay:"1.2s"});
-			$("#anm2_3").j_animation({name:"fadeInUp",timingFunc:"cubic-bezier(0.17, 0.5, 0.25, 1)",delay:"2.2s","iteration":"infinite"});
-			$("#se2").j_animation({name:"fadeIn",duration:"0.5s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"1.2s"});
-			$("#anim2_6 .butt").j_animation({name:"pulse",duration:"1.6s",timingFunc:"ease",delay:"1.2s","iteration":"infinite"});
-			var p = $("#anim2_6 .butt").attr("data-p");
-			if(p == undefined || p == "news"){
-				sys.removeTouch("body");
-			}else{
-				sys.tips();
-			}
-			
-			break;
-		case 2:
-			$("#anm5_2").j_animation({name:"zoomIn",duration:"1s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"0.2s"});
-			//$("#anm5_1").j_animation({name:"flipInUp",duration:"1s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"1.2s"});
-			
-			if($(".times.resizeform").text() == ""){
-				$(".times.resizeform").css({display:"none"})
-			}
-			sys.tips();
-			break;
-		case 3:
-			ahk.list();
-			$("#map").j_animation({name:"fadeInDown",duration:"1s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"0.2s"});
-			$("#anmx_1").j_animation({name:"fadeInLeft",duration:"1s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"1.2s"});
-			$("#anmx_2").j_animation({name:"fadeInRight",duration:"1s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"1.2s"});
-			sys.tips();
-			break;
-		case 4:
-			$("#anm4_1").j_animation({name:"zoomIn",duration:"4s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"0.5s"});
-			$("#anm6_1").j_animation({name:"fadeInLeft",duration:"2s",timingFunc:"cubic-bezier(0, 1.01, 1, 1)",delay:"1s"});
-			$("#anm6_2").j_animation({name:"zoomIn",duration:"1.5s",timingFunc:"cubic-bezier(0.21, 1.18, 0.86, 0.97)",delay:"3s","iteration":"infinite"});
-			//sys.tips();
-			break;
+		
 	}
 }
 
@@ -321,15 +284,6 @@ ahk.loadCheck = function(){
 
 $(function(){
 	ahk.init();
-	ahk.upload();
-	ahk.doupload();
-
-	$("#anmx_1").click(function(){
-		ahk.list()
-	});
-	$("#anmx_2").click(function(){
-		ahk.inMap()
-	});
 
 	if(sys.isWeixinBrowser()){
 		$.getJSON('http://weixin.ibyerzs.com/jssdk/getJsSdk.php?callback=?',
@@ -342,7 +296,7 @@ $(function(){
 				timestamp: data.timestamp,
 				nonceStr: data.nonceStr,
 				signature: data.signature,
-				jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage","getLocation","chooseImage","uploadImage"]
+				jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage"]
 			  });
 			  wx.ready(function () {
 				wx.onMenuShareAppMessage({//发送给好友
@@ -371,212 +325,8 @@ $(function(){
 						// 用户取消分享后执行的回调函数
 					}
 				});
-				wx.getLocation({
-					type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-					success: function (res) {
-						ahk.latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-						ahk.longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-						ahk.speed = res.speed; // 速度，以米/每秒计
-						ahk.accuracy = res.accuracy; // 位置精度
-						ahk.gps = new Array(ahk.latitude,ahk.longitude,ahk.speed,ahk.accuracy)
-					}
-				});
 			  });
 			}
 		)
 	}	
 });
-
-
-ahk.upload = function(){
-	$("#anim2_6 .butt").click(function(e){
-		e.preventDefault();
-		$(this).unbind("click");
-		wx.chooseImage({
-			count: 1, // 默认9
-			sizeType: ['original','compressed'], // 可以指定是原图还是压缩图，默认二者都有
-			sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-			success: function (res) {
-				ahk.localIds = res.localIds[0]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-				$("#anim2_6 img").attr("src",ahk.localIds).removeAnimation();
-				$("#card1").attr("src",ahk.localIds);
-				$("#anim2_6 .butt").attr("data-p","news");
-				$("#anm2_5").j_animation({name:"fadeInUp",duration:"0.6s",timingFunc:"ease",delay:"0.2s"});
-
-				document.getElementById("exif").onclick = function() {
-				    EXIF.getData(this, function() {
-					console.log(EXIF.getTag(this,"GPSLatitude"),EXIF.getTag(this,"GPSLongitude"));
-				    });
-				}
-			},
-			cancel: function () { 
-			        ahk.upload();// 用户取消分享后执行的回调函数
-			}
-		});
-	})
-}
-
-ahk.doupload = function(){
-	$("#anm2_5").click(function(e){
-		e.preventDefault();
-		$(this).unbind("click");
-
-		ahk.when = $("input[name=when]").val();
-		ahk.where = $("input[name=where]").val();
-		ahk.words = $("input[name=words]").val();
-
-
-		var p = $("#anim2_6 .butt").attr("data-p");
-		if(p == undefined || p != "news"){
-			$.alert("请上传一张照片","提示");
-			ahk.doupload();
-			return;
-		}
-
-		$("#anm2_5").j_animation({name:"fadeOutDown",duration:"1s",timingFunc:"ease",delay:"0.2s"});
-
-		wx.uploadImage({
-			localId: ahk.localIds, // 需要上传的图片的本地ID，由chooseImage接口获得
-			isShowProgressTips: 1, // 默认为1，显示进度提示
-			success: function (res) {
-				ahk.serverId = res.serverId; // 返回图片的服务器端ID
-				$.showLoading();
-				$.getJSON("http://sv2.nbibyer.com:7790/doupload/?callback=?",
-					{openid:ahk.openid,when:ahk.when,where:ahk.where,words:ahk.words,gps:ahk.gps.join("-"),serverId:ahk.serverId},
-					function(t){
-						$.hideLoading();
-						if(t.msg == "提交成功"){
-							$("#anim2_6 .butt").attr("data-p","newup");
-							ahk.setCard($("#card1").attr("src"),ahk.when,ahk.where,ahk.words);
-							
-							sys.inittouch("body");
-							setTimeout(sys.moveup,50);
-						}
-					}
-				)
-			}
-		});
-
-	})
-}
-
-ahk.setCard = function(url,when,where,words){
-	$("#card1").attr("src",url);
-	$("#anm5_2 h1").text(words)
-	$("#anm5_2 span:eq(0)").text(when)
-	$("#anm5_2 span:eq(1)").text(where)
-}
-
-ahk.list = function(){
-	$.showLoading();
-	$("#map").html('<ul class="list"></ul>');
-	$.getJSON("http://sv2.nbibyer.com:7790/list/?callback=?",
-		{openid:ahk.openid},
-		function(t){
-			$.hideLoading();
-
-			if(t.Msg != "error" && t.Msg != "empty"){
-				ahk.maps = t.Mapa;
-				for(var i= 0,len=t.Mapa.length;i<len;i++){
-					$("#map ul").append('<li><span>'+t.Mapa[i].When+'</span><span>'+t.Mapa[i].Where+'</span></li>')
-				}
-			}
-		}
-	)
-}
-
-	
-
-ahk.inMap = function(id){
-	$("#map").html('<div id="bdmap"></div>');
-	//地图初始化
-	var first = ahk.maps[0].Gps.split("-");
-	var bm = new BMap.Map("bdmap");
-	var opts = {type: BMAP_NAVIGATION_CONTROL_SMALL}    
-	bm.addControl(new BMap.NavigationControl(opts));
-	bm.addControl(new BMap.GeolocationControl());
-	
-	//坐标转换完之后的回调函数
-	var translate = function(ggPoint,card){
-		var convertor = new BMap.Convertor();
-		var pointArr = [];
-		pointArr.push(ggPoint);
-		convertor.translate(pointArr, 1, 5, function(data){
-			if(data.status === 0) {
-				/*var marker = new BMap.Marker(data.points[0]);
-				marker.addEventListener("click",function(){
-					ahk.setCard("http://sv2.nbibyer.com:7790/upload/"+card.Filename,card.When,card.Where,card.Words)
-					var tp = ahk.step;
-					$("#section_"+tp).j_transition({timingFunc:"cubic-bezier(0.04, 1.01, 0.18, 0.96)",duration:"0.4s"});
-					$("#section_"+tp).j_transform({y:0})
-					ahk.step--;
-					ahk.scene();
-				});*/
-				//bm.addOverlay(marker);
-				bm.addOverlay(new SquareOverlay(data.points[0],card));
-				bm.setCenter(data.points[0]);
-			}
-		})
-	}
-
-	var rawGps = new BMap.Point(first[1],first[0])
-	bm.centerAndZoom(rawGps, 12);
-
-	// 百度地图API功能
-    	for(var i = 0,len=ahk.maps.length;i<len;i++){
-    		var gps = ahk.maps[i].Gps.split("-");
-    		var raw = new BMap.Point(gps[1],gps[0]);
-    		translate(raw,ahk.maps[i])
-    	}
-}
-
-
-// 定义自定义覆盖物的构造函数  
-function SquareOverlay(loca,card){    
-	this._card = card;  
-	this._center = loca;
-}    
-// 继承API的BMap.Overlay    
-SquareOverlay.prototype = new BMap.Overlay();
-// 实现初始化方法  
-SquareOverlay.prototype.initialize = function(map){    
-	// 保存map对象实例   
-	this._map = map;        
-	// 创建div元素，作为自定义覆盖物的容器   
-	var div = document.createElement("div");    
-	div.className = "smallcard";
-	$(div).html('<img src="http://sv2.nbibyer.com:7790/upload/'+this._card.Filename+'">');
-	$(div).attr({"data-filename":this._card.Filename,"data-when":this._card.When,"data-where":this._card.Where,"data-words":this._card.Words});
-	// 将div添加到覆盖物容器中   
-	map.getPanes().markerPane.appendChild(div);
-
-	div.addEventListener("click",function(){
-		var f = $(this).attr("data-filename");
-		var when = $(this).attr("data-when");
-		var where = $(this).attr("data-where");
-		var words = $(this).attr("data-words");
-
-		ahk.setCard("http://sv2.nbibyer.com:7790/upload/"+f,when,where,words);
-		var tp = ahk.step;
-		$("#section_"+tp).j_transition({timingFunc:"cubic-bezier(0.04, 1.01, 0.18, 0.96)",duration:"0.4s"});
-		$("#section_"+tp).j_transform({y:0})
-		ahk.step--;
-		ahk.scene();
-	});
-	// 保存div实例   
-	this._div = div;      
-	// 需要将div元素作为方法的返回值，当调用该覆盖物的show、   
-	// hide方法，或者对覆盖物进行移除时，API都将操作此元素。   
-	return div;    
-}
-
-// 实现绘制方法   
-SquareOverlay.prototype.draw = function(){    
-	// 根据地理坐标转换为像素坐标，并设置给容器    
-	var position = this._map.pointToOverlayPixel(this._center);    
-	this._div.style.left = position.x - 20 + "px";    
-	this._div.style.top = position.y - 20+ "px";    
-}
-
-
-
