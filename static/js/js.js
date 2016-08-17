@@ -306,7 +306,7 @@ ahk.init = function() {
 			y: "100%"
 		});
 	});
-	$("#anm4_5").css({top:(ahk.h - $("#anm4_5").height())/2+"px"})
+
 }
 
 ahk.fsera = function() {
@@ -481,16 +481,64 @@ ahk.scene = function() {
 			sys.tips();
 			break;
 		case 3:
-			$(".music.fixed.center").j_animation({name:"zoomOut"});
-			$("#anm4_1").j_animation({name:"fadeInDown",duration:"0.5s",timingFunc:"cubic-bezier(0.39, 0.07, 0.25, 1)",delay:"0.2s"});
-			$("#anm4_2").j_animation({name:"fadeInDown",duration:"0.5s",timingFunc:"cubic-bezier(0.39, 0.07, 0.25, 1)",delay:"0.35s"});
-			$("#anm4_3").j_animation({name:"fadeInDown",duration:"0.5s",timingFunc:"cubic-bezier(0.39, 0.07, 0.25, 1)",delay:"0.5s"});
-			$("#anm4_4").j_animation({name:"fadeInDown",duration:"0.5s",timingFunc:"cubic-bezier(0.39, 0.07, 0.25, 1)",delay:"0.65s"});
-			$("#anm4_9").j_animation({name:"fadeInUp",duration:"0.5s",timingFunc:"cubic-bezier(0.39, 0.07, 0.25, 1)",delay:"0.2s"});
-			$("#anm4_8").j_animation({name:"fadeInUp",duration:"0.5s",timingFunc:"cubic-bezier(0.39, 0.07, 0.25, 1)",delay:"0.35s"});
-			$("#anm4_7").j_animation({name:"fadeInUp",duration:"0.5s",timingFunc:"cubic-bezier(0.39, 0.07, 0.25, 1)",delay:"0.5s"});
-			$("#anm4_6").j_animation({name:"fadeInUp",duration:"0.5s",timingFunc:"cubic-bezier(0.39, 0.07, 0.25, 1)",delay:"0.65s"});
-			$("#anm4_5").j_animation({name:"bounceIn",delay:"1s"})
+			$("#anm4_5").css({
+				top: (ahk.h - $("#anm4_5").height()) / 2 + "px"
+			})
+			$(".music.fixed.center").j_animation({
+				name: "zoomOut"
+			});
+			$("#anm4_1").j_animation({
+				name: "fadeInDown",
+				duration: "0.5s",
+				timingFunc: "cubic-bezier(0.39, 0.07, 0.25, 1)",
+				delay: "0.2s"
+			});
+			$("#anm4_2").j_animation({
+				name: "fadeInDown",
+				duration: "0.5s",
+				timingFunc: "cubic-bezier(0.39, 0.07, 0.25, 1)",
+				delay: "0.35s"
+			});
+			$("#anm4_3").j_animation({
+				name: "fadeInDown",
+				duration: "0.5s",
+				timingFunc: "cubic-bezier(0.39, 0.07, 0.25, 1)",
+				delay: "0.5s"
+			});
+			$("#anm4_4").j_animation({
+				name: "fadeInDown",
+				duration: "0.5s",
+				timingFunc: "cubic-bezier(0.39, 0.07, 0.25, 1)",
+				delay: "0.65s"
+			});
+			$("#anm4_9").j_animation({
+				name: "fadeInUp",
+				duration: "0.5s",
+				timingFunc: "cubic-bezier(0.39, 0.07, 0.25, 1)",
+				delay: "0.2s"
+			});
+			$("#anm4_8").j_animation({
+				name: "fadeInUp",
+				duration: "0.5s",
+				timingFunc: "cubic-bezier(0.39, 0.07, 0.25, 1)",
+				delay: "0.35s"
+			});
+			$("#anm4_7").j_animation({
+				name: "fadeInUp",
+				duration: "0.5s",
+				timingFunc: "cubic-bezier(0.39, 0.07, 0.25, 1)",
+				delay: "0.5s"
+			});
+			$("#anm4_6").j_animation({
+				name: "fadeInUp",
+				duration: "0.5s",
+				timingFunc: "cubic-bezier(0.39, 0.07, 0.25, 1)",
+				delay: "0.65s"
+			});
+			$("#anm4_5").j_animation({
+				name: "bounceIn",
+				delay: "1s"
+			})
 	}
 }
 
