@@ -150,9 +150,9 @@ sys.tm = function(e) {
 
 	if (sys.startY > sys.endY) {
 		if (ahk.step == $(".section").length - 1) {
-			$("#section_" + ahk.step).j_transform({
+			/*$("#section_" + ahk.step).j_transform({
 				y: (-sys.yInit - dis) + "px"
-			})
+			})*/
 		} else {
 			$("#section_" + (ahk.step + 1)).j_transform({
 				y: (-sys.yInit - dis) + "px"
@@ -581,7 +581,7 @@ $(function() {
 				});
 				wx.ready(function() {
 					wx.onMenuShareAppMessage({ //发送给好友
-						title: '沈刚都来啦，你还等什么？', // 分享标题
+						title: '沈刚在拜博，你更有信心！', // 分享标题
 						desc: '上海拜博口腔招聘啦！', // 分享描述
 						link: 'http://m.ibyersh.com/zt/2016/zhaop/', // 分享链接
 						imgUrl: 'http://m.ibyersh.com/zt/2016/zhaop/static/images/face.jpg', // 分享图标
@@ -596,7 +596,7 @@ $(function() {
 					});
 
 					wx.onMenuShareTimeline({ //分享到朋友圈
-						title: '沈刚都来啦，你还等什么？', // 分享标题
+						title: '沈刚在拜博，你更有信心！', // 分享标题
 						link: 'http://m.ibyersh.com/zt/2016/zhaop/', // 分享链接
 						imgUrl: 'http://m.ibyersh.com/zt/2016/zhaop/static/images/face.jpg', // 分享图标
 						success: function() {
