@@ -463,12 +463,6 @@ ahk.scene = function() {
 				timingFunc: "cubic-bezier(0.17, 0.5, 0.25, 1)",
 				delay: ".9s"
 			});
-			$("#anm3_14").j_animation({
-				name: "fadeInUp",
-				duration: "0.6s",
-				timingFunc: "cubic-bezier(0.17, 0.5, 0.25, 1)",
-				delay: "5s"
-			});
 
 			$(".rfsera").each(function(i) {
 				$("#anm3_" + (4 + i)).j_animation({
@@ -477,6 +471,13 @@ ahk.scene = function() {
 					timingFunc: "cubic-bezier(0.63, 0.07, 0.41, 0.98)",
 					delay: (1 + 0.3 * (i + 1)) + "s"
 				});
+			});
+
+			$("#anm3_9").j_animation({
+				name: "fadeInUp",
+				duration: "0.6s",
+				timingFunc: "cubic-bezier(0.17, 0.5, 0.25, 1)",
+				delay: "3.5s"
 			});
 			sys.tips();
 			break;
